@@ -6,13 +6,13 @@ import java.util.UUID;
 public class Expense {
 
     private final UUID id;
-    private String name;
+    private String description;
     private BigDecimal amount;
     private User paidByUser;
 
-    public Expense(UUID id, String name, BigDecimal amount, User paidByUser) {
+    public Expense(UUID id, String description, BigDecimal amount, User paidByUser) {
         this.id = id;
-        this.name = name;
+        this.description = description;
         this.amount = amount;
         this.paidByUser = paidByUser;
     }
@@ -21,8 +21,8 @@ public class Expense {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
     public BigDecimal getAmount() {
