@@ -20,7 +20,13 @@ public class ExpenseController {
             "something@gmail.com", "07123456789");
 
     static {
-        expenses.add(new Expense(UUID.randomUUID(), "this is a test", new BigDecimal("2.3"), testUser));
+        Expense expense = Expense.builder()
+                .id(UUID.randomUUID())
+                .amount(new BigDecimal("2.3"))
+                .description("this is a test")
+                .paidByUser(testUser).build();
+        expenses.add(expense);
+        //expenses.add(new Expense(UUID.randomUUID(), "this is a test", new BigDecimal("2.3"), testUser));
     }
 
     @GetMapping("/expenses")
