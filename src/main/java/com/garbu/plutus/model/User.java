@@ -1,41 +1,25 @@
 package com.garbu.plutus.model;
 
+import lombok.Data;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Data
 public class User {
 
-    private final UUID id;
+  private final UUID id;
+  private String name;
+  private String email;
+  private String mobileNo;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String mobileNo;
+  private LocalDateTime registeredAt;
+  private LocalDateTime updatedAt;
 
-    public User(UUID id, String firstName, String lastName, String email, String mobileNo) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.mobileNo = mobileNo;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getMobileNo() {
-        return mobileNo;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+  public User(UUID id, String name, String email, String mobileNo) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.mobileNo = mobileNo;
+  }
 }
