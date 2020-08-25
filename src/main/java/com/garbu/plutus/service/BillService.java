@@ -16,15 +16,9 @@ public class BillService {
 
   private final BillDao billDao;
 
-//  private static User testUser =
-//          new User(UUID.randomUUID(), "John Doe", "something@gmail.com", "07123456789");
-
-  private Map<UUID, Bill> billMap;
-
   @Autowired
   public BillService(@Qualifier("postgres") BillDao billDao) {
     this.billDao = billDao;
-    this.billMap = BillDao.BILL_MAP;
   }
 
   public boolean saveBill(Bill bill) {
