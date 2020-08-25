@@ -17,6 +17,7 @@ public class BillDao implements Dao<Bill> {
 
   public static final Map<UUID, Bill> BILL_MAP = new HashMap<>();
 
+  // for testing only
   static {
     UUID randomId = UUID.randomUUID();
     BILL_MAP.put(
