@@ -5,7 +5,7 @@ a proof of concept.
 
 # Models
 
-## Expense
+## Bill
 
 ## Split
 
