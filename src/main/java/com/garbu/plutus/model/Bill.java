@@ -16,6 +16,7 @@ public class Bill {
   private BigDecimal amount;
   private User paidByUser;
   private Boolean isPaid = false;
+  private Boolean isDeleted = false;
 
   private LocalDateTime billCreatedAt;
   private LocalDateTime billUpdatedAt;
