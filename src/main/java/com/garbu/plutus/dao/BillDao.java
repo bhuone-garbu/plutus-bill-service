@@ -1,6 +1,7 @@
 package com.garbu.plutus.dao;
 
 import com.garbu.plutus.model.Bill;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -11,20 +12,24 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Repository("postgres")
 public class BillDao implements Dao<Bill> {
 
   public static final Map<UUID, Bill> BILL_MAP = new HashMap<>();
 
-  @Override
-  public boolean save(Bill bill) {
+  static {
     UUID randomId = UUID.randomUUID();
     BILL_MAP.put(
-        randomId,
+            randomId,
         Bill.builder()
-            .id(UUID.randomUUID())
+            .id(randomId)
             .amount(new BigDecimal("2.3"))
             .description("this is a test")
             .build());
+  }
+
+  @Override
+  public boolean save(Bill bill) {
     return true;
   }
 
@@ -37,6 +42,7 @@ public class BillDao implements Dao<Bill> {
   @Override
   public Collection<Bill> getAll() {
     return BILL_MAP.values().stream().filter(Objects::nonNull).collect(Collectors.toUnmodifiableList());
+    // return BILL_MAP.values();
   }
 
   @Override
