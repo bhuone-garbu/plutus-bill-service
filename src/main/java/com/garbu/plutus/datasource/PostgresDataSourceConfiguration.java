@@ -6,12 +6,14 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
 @Configuration
-public class PostgresDataSource {
+public class PostgresDataSourceConfiguration {
 
   @Bean
   @ConfigurationProperties("app.datasource")
-  public HikariDataSource hikariDataSource() {
+  public DataSource hikariDataSource() {
     return DataSourceBuilder.create().type(HikariDataSource.class).build();
   }
 

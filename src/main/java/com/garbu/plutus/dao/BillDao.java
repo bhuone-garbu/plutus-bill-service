@@ -1,32 +1,28 @@
 package com.garbu.plutus.dao;
 
 import com.garbu.plutus.model.Bill;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Repository("postgres")
 public class BillDao implements Dao<Bill> {
 
-  public static final Map<UUID, Bill> BILL_MAP = new HashMap<>();
+  public static final String GET_QUERY =
+      "SELECT b.id, b.description, b.amount, b.paid_by_user, b.is_deleted, b.is_paid FROM Bill b";
 
-  // for testing only
-  static {
-    UUID randomId = UUID.randomUUID();
-    BILL_MAP.put(
-            randomId,
-        Bill.builder()
-            .id(randomId)
-            .amount(new BigDecimal("2.3"))
-            .description("this is a test")
-            .build());
+  private final JdbcTemplate jdbcTemplate;
+
+  @Autowired
+  public BillDao(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
   }
 
   @Override
@@ -41,13 +37,41 @@ public class BillDao implements Dao<Bill> {
   public void delete(Bill bill) {}
 
   @Override
-  public Collection<Bill> getAll() {
-    return BILL_MAP.values().stream().filter(Objects::nonNull).collect(Collectors.toUnmodifiableList());
-    // return BILL_MAP.values();
+  public List<Bill> getAll() {
+    return jdbcTemplate.query(
+        GET_QUERY,
+        (resultSet, i) ->
+            new Bill(
+                resultSet.getString("id"),
+                resultSet.getString("description"),
+                new BigDecimal(resultSet.getString("amount")),
+                // resultSet.getString("b.paid_by_user"),
+                null,
+                resultSet.getBoolean("is_paid"),
+                resultSet.getBoolean("is_deleted"),
+                null,
+                null));
   }
 
   @Override
   public Optional<Bill> getOne(UUID id) {
-    return Optional.ofNullable(BILL_MAP.get(id));
+    final String sql = GET_QUERY + " where b.id = ?";
+    Bill bill =
+        jdbcTemplate.queryForObject(
+            sql,
+            new Object[] {id},
+            (resultSet, i) ->
+                new Bill(
+                    resultSet.getString("id"),
+                    resultSet.getString("description"),
+                    new BigDecimal(resultSet.getString("amount")),
+                    // resultSet.getString("b.paid_by_user"),
+                    null,
+                    resultSet.getBoolean("is_paid"),
+                    resultSet.getBoolean("is_deleted"),
+                    null,
+                    null));
+
+    return Optional.ofNullable(bill);
   }
 }

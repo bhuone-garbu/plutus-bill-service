@@ -1,6 +1,6 @@
 package com.garbu.plutus.dao;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,6 +13,6 @@ public interface Dao<T> {
   void delete(T t);
 
   // Retrieve operation
-  Collection<T> getAll();
+  List<T> getAll();
   Optional<T> getOne(UUID id);
 }

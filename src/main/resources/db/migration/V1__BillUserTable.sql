@@ -1,17 +1,17 @@
-create table AppUser (
+create table app_user (
   id uuid not null primary key,
   username varchar not null,
   email varchar not null,
-  mobileNo varchar not null,
-  registeredAt timestamp not null,
-  updatedAt timestamp not null
+  mobile_no varchar not null,
+  registered_at timestamp not null,
+  updated_at timestamp not null
 );
 
-create table Bill (
+create table bill (
   id uuid not null primary key,
   description varchar not null,
   amount numeric(6, 2) not null,
-  paidByUser uuid references AppUser(id),
-  isPaid boolean default false,
-  isDeleted boolean default false
+  paid_by_user uuid references app_user(id),
+  is_paid boolean default false,
+  is_deleted boolean default false
 );
