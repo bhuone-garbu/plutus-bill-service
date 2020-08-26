@@ -9,16 +9,16 @@ import java.util.UUID;
 public class User {
 
   private final UUID id;
-  private String name;
+  private String username;
   private String email;
   private String mobileNo;
 
   private LocalDateTime registeredAt;
   private LocalDateTime updatedAt;
 
-  public User(UUID id, String name, String email, String mobileNo) {
+  public User(UUID id, String username, String email, String mobileNo) {
     this.id = id;
-    this.name = name;
+    this.username = username;
     this.email = email;
     this.mobileNo = mobileNo;
   }
