@@ -1,4 +1,4 @@
-create table app_user (
+create table if not exists  app_user (
   id uuid not null primary key,
   username varchar not null,
   email varchar not null,
@@ -7,7 +7,7 @@ create table app_user (
   updated_at timestamp not null
 );
 
-create table bill (
+create table if not exists bill (
   id uuid not null primary key,
   description varchar not null,
   amount numeric(6, 2) not null,
