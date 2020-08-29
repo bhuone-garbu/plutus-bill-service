@@ -1,7 +1,6 @@
 package com.garbu.plutus.api;
 
 import com.garbu.plutus.model.Bill;
-import com.garbu.plutus.model.User;
 import com.garbu.plutus.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("api/v1/expenses")
+@RequestMapping("api/v1/bills")
 @RestController
 public class BillController {
 

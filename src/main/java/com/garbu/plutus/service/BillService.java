@@ -2,13 +2,11 @@ package com.garbu.plutus.service;
 
 import com.garbu.plutus.dao.BillDao;
 import com.garbu.plutus.model.Bill;
-import com.garbu.plutus.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.UUID;
 
 @Service

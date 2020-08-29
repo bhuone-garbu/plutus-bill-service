@@ -12,10 +12,10 @@ public class Split {
 
   private Bill bill;
   private BigDecimal amount;
-  private User recipient;
+  private AppUser recipient;
   private Boolean isPaid = false;
 
-  public Split(UUID id, Bill bill, User recipient) {
+  public Split(UUID id, Bill bill, AppUser recipient) {
     this.id = id;
     this.bill = bill;
     this.recipient = recipient;

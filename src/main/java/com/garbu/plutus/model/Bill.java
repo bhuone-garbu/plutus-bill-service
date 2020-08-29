@@ -20,7 +20,7 @@ public class Bill {
   @NotBlank private String description;
 
   @NotNull private BigDecimal amount;
-  private User paidByUser;
+  private AppUser paidByAppUser;
 
   @Builder.Default() private Boolean isPaid = false;
 
@@ -30,43 +30,22 @@ public class Bill {
   private LocalDateTime billUpdatedAt;
 
   public Bill(
-      UUID id,
+      String id,
       String description,
       BigDecimal amount,
-      User paidByUser,
+      AppUser paidByAppUser,
       Boolean isPaid,
       Boolean isDeleted,
       LocalDateTime billCreatedAt,
       LocalDateTime billUpdatedAt) {
 
-    this.id = id;
+    this.id = UUID.fromString(id);
     this.description = description;
     this.amount = amount;
-    this.paidByUser = paidByUser;
+    this.paidByAppUser = paidByAppUser;
     this.isPaid = isPaid;
     this.isDeleted = isDeleted;
     this.billCreatedAt = billCreatedAt;
     this.billUpdatedAt = billUpdatedAt;
-  }
-
-  public Bill(
-      String id,
-      String description,
-      BigDecimal amount,
-      User paidByUser,
-      Boolean isPaid,
-      Boolean isDeleted,
-      LocalDateTime billCreatedAt,
-      LocalDateTime billUpdatedAt) {
-
-    this(
-        UUID.fromString(id),
-        description,
-        amount,
-        paidByUser,
-        isPaid,
-        isDeleted,
-        billCreatedAt,
-        billUpdatedAt);
   }
 }
