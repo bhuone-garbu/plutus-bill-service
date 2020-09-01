@@ -5,14 +5,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 // generic Dao
-public interface Dao<T> {
+public interface Dao<P> {
 
-  // CRUD operation
-  boolean save(T t);
-  void update(T t);
-  void delete(T t);
+  // basic CRUD operation
+  boolean save(P p);
+  void update(P p);
+  void delete(P p);
 
   // Retrieve operation
-  List<T> getAll();
-  Optional<T> getOne(UUID id);
+  List<P> getAll();
+  Optional<P> getOne(UUID id);
 }

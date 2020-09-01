@@ -19,8 +19,7 @@ public class BillService {
     this.billDao = billDao;
   }
 
-  public boolean saveBill(Bill bill) {
-    return billDao.save(bill);
+  public boolean saveBill(Bill bill) { return billDao.save(bill);
   }
 
   public Bill getBill(UUID id) {

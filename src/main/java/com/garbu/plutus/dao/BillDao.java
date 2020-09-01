@@ -1,6 +1,6 @@
 package com.garbu.plutus.dao;
 
-import com.garbu.plutus.model.AppUser;
+import com.garbu.plutus.model.User;
 import com.garbu.plutus.model.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,11 +13,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/***
+ * Queries are intentionally written in SQL as opposed to using ORMs for better understanding.
+ * Will migrate to ORM when deemed necessary.
+ */
 @Repository("postgres")
 public class BillDao implements Dao<Bill> {
 
   public static final String GET_QUERY =
-      "SELECT b.id as billId, b.description, b.amount, b.paid_by_user, b.is_deleted, b.is_paid, " +
+      "SELECT b.id as billId, b.description, b.amount, b.created_by_user, b.paid_by_user, b.is_deleted, b.is_paid, " +
           "a.id as userId, a.mobile_no, a.username, a.email FROM bill b JOIN app_User a ON b.paid_by_user=a.id";
 
   private final JdbcTemplate jdbcTemplate;
@@ -50,7 +54,7 @@ public class BillDao implements Dao<Bill> {
         resultSet.getString("billId"),
         resultSet.getString("description"),
         new BigDecimal(resultSet.getString("amount")),
-        new AppUser(
+        new User(
             resultSet.getString("userId"),
             resultSet.getString("username"),
             resultSet.getString("email"),
