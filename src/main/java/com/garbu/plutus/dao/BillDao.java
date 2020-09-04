@@ -14,15 +14,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 /***
- * Queries are intentionally written in SQL as opposed to using ORMs for better understanding.
- * Will migrate to ORM when deemed necessary.
+ * Queries are intentionally written in SQL as opposed to using ORMs for better education others before
+ * moving to hibernate ORM.
  */
 @Repository("postgres")
 public class BillDao implements Dao<Bill> {
 
   public static final String GET_QUERY =
-      "SELECT b.id as billId, b.description, b.amount, b.created_by_user, b.paid_by_user, b.is_deleted, b.is_paid, " +
-          "a.id as userId, a.mobile_no, a.username, a.email FROM bill b JOIN app_User a ON b.paid_by_user=a.id";
+      "SELECT b.id as billId, b.description, b.amount, b.created_by, b.paid_by, b.is_deleted, b.is_paid, " +
+          "u.id as userId, u.mobile_no, u.username, u.email FROM \"bill\" b JOIN \"user\" u ON b.paid_by=u.id";
 
   private final JdbcTemplate jdbcTemplate;
 

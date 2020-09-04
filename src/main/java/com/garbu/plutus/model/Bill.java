@@ -3,20 +3,25 @@ package com.garbu.plutus.model;
 // import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "bill")
 public class Bill {
 
   @Id
   @Column(name = "id", updatable = false, nullable = false)
-  private final UUID id;
+  private final Long id;
 
   @NotBlank
   @Column(name = "description", nullable = false)
@@ -60,7 +65,7 @@ public class Bill {
       LocalDateTime billCreatedAt,
       LocalDateTime billUpdatedAt) {
 
-    this.id = UUID.fromString(id);
+    this.id = Long.valueOf(id);
     this.description = description;
     this.amount = amount;
     this.paidBy = paidBy;
