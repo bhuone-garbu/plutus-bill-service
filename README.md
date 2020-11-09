@@ -1,6 +1,8 @@
 # Intro
 
-Plutus-service will be the core backend for project: *plutus* re-written in Java, using SprintBoot. Previously, it was built using Python Django where everything was merged into a single monolithic architecture as a proof of concept.
+Previously, *plutus* was built using Python Django where everything was developed into a single monolithic architecture as a proof of concept. But now it's split into different services like micro services.
+
+This will be backend service to only handle core bill service.
 
 # Tech stack
 
